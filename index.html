@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css.css">
+    <title>Phone</title>
+</head>
+<body>
+    <div class="container">
+        <div class="phone">
+            <div class="cam">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="status">
+                <div class="time"></div>
+                <div class="sim">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="cell">
+                    <div></div>
+                </div>
+            </div>
+            <div class="video">
+                <video src="./video.mp4" loop autoplay muted></video>
+                <audio src="./Kedam - Shy Girl.mp3" muted></audio>
+            </div>
+            <div class="btns">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function upTime(){
+            const time = new Date();
+            let hour  =   time.getHours();
+            let minute =  time.getMinutes();
+            switch (hour) {
+                case 0: hour =  "0"+hour; break;
+                case 1: hour =  "0"+hour; break;
+                case 2: hour =  "0"+hour; break;
+                case 3: hour =  "0"+hour; break;
+                case 4: hour =  "0"+hour; break;
+                case 5: hour =  "0"+hour; break;
+                case 6: hour =  "0"+hour; break;
+                case 7: hour =  "0"+hour; break;
+                case 8: hour =  "0"+hour; break;
+                case 9: hour =  "0"+hour; break;
+                default: hour =   hour; break;
+            }
+            switch (minute) {
+                case 0: minute =  "0"+hour; break;
+                case 1: minute =  "0"+minute; break;
+                case 2: minute =  "0"+minute; break;
+                case 3: minute =  "0"+minute; break;
+                case 4: minute =  "0"+minute; break;
+                case 5: minute =  "0"+minute; break;
+                case 6: minute =  "0"+minute; break;
+                case 7: minute =  "0"+minute; break;
+                case 8: minute =  "0"+minute; break;
+                case 9: minute =  "0"+minute; break;
+                default: minute =   minute; break;
+            }
+            document.querySelector(".time").textContent =   `${hour}:${minute}`;
+        }
+        setInterval(upTime, 1000)
+        
+        const video = document.querySelector("video");
+        const audio = document.querySelector("audio");        
+        video.addEventListener("play", () => {
+            audio.volume    =   0.5;
+            audio.loop = true;
+            crtBtn()
+            
+        })
+        const phone =   document.querySelector(".phone");
+        const btnEl  =   document.createElement("button");
+        let voice   =   false;
+        function crtBtn(){
+            btnEl.innerHTML   =   "<marquee>Music</marquee>";
+            btnEl.classList.add("btn")
+            btnEl.addEventListener("click", () =>{
+                btnEl.classList.toggle("playing")
+                if(voice){
+                    audio.muted = true;
+                    voice   =   false;
+                }else{
+                    audio.muted = false;
+                    audio.play();
+                    voice   =   true;
+                }
+            })
+            phone.appendChild(btnEl)
+
+        }
+    </script>
+</body>
+</html>

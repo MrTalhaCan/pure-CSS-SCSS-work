@@ -1,0 +1,211 @@
+$color_1: rgb(49, 140, 175);
+$color_2: rgb(218, 140, 38);
+$background-color_1: rgba(0, 0, 0, 0.5);
+$background-color_2: black;
+$background-color_3: transparent;
+$cuvewidth: 22px;
+$cuveheight: 40px;
+$btnssize: 25px;
+$margin1: 1%;
+$statusitemtop: 20%;
+$margin5: 5%;
+$invert: invert(100%);
+
+@keyframes moving {
+	0% {
+		background-image: radial-gradient(rgb(24, 78, 109), black);
+	}
+	25% {
+		background-image: radial-gradient(rgb(22, 72, 102), black);
+	}
+	50% {
+		background-image: radial-gradient(rgb(20, 66, 94), black);
+	}
+	75% {
+		background-image: radial-gradient(rgb(18, 60, 85), black);
+	}
+	100% {
+		background-image: radial-gradient(rgb(16, 51, 71), black);
+	}
+}
+* {
+	box-sizing: border-box;
+}
+body {
+	padding: 0;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	background-image: radial-gradient(rgb(24, 78, 109), black);
+	animation: moving 2s ease infinite alternate;
+}
+.btn {
+	z-index: 2;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background-color: $background-color_1;
+	position: absolute;
+	top: 30%;
+	right: 5%;
+	border: none;
+	color: $color_1;
+	font-weight: bold;
+}
+.playing {
+	color: $color_2;
+}
+.container {
+	margin: auto;
+	width: 98%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.phone {
+	overflow: hidden;
+	width: 300px;
+	max-height: 600px;
+	height: 100%;
+	border-radius: 20px;
+	border: 8px solid black;
+	position: relative;
+	div {
+		position: absolute;
+	}
+	.cam {
+		z-index: 2;
+		width: 100%;
+		position: relative;
+		div {
+			&:nth-child(1) {
+				width: $cuvewidth;
+				height: $cuveheight;
+				top: -10px;
+				border-top-right-radius: 50%;
+				border-top: 10px solid black;
+				left: calc(50% - 30px);
+			}
+			&:nth-child(2) {
+				width: 20px;
+				height: 25px;
+				background-color: $background-color_2;
+				top: -12px;
+				left: calc(50% - 10px);
+				border-radius: 50%;
+			}
+			&:nth-child(3) {
+				width: $cuvewidth;
+				height: $cuveheight;
+				top: -10px;
+				border-top-left-radius: 50%;
+				border-top: 10px solid black;
+				right: calc(50% - 30px);
+			}
+		}
+	}
+	.btns {
+		z-index: 2;
+		bottom: $margin1;
+		filter: $invert;
+		left: 0;
+		height: 50px;
+		width: 100%;
+		div {
+			top: calc(50% - 12.5px);
+			&:nth-child(1) {
+				width: 0;
+				height: 0;
+				background-color: $background-color_3;
+				left: calc($margin5) * 2;
+				border-bottom: calc($btnssize / 2) solid transparent;
+				border-top: calc($btnssize / 2) solid transparent;
+				border-right: calc($btnssize - 5px) solid black;
+			}
+			&:nth-child(2) {
+				width: $btnssize;
+				height: $btnssize;
+				border: 3px solid black;
+				border-radius: 50%;
+				left: calc(50% - $btnssize / 2);
+			}
+			&:nth-child(3) {
+				width: $btnssize;
+				height: $btnssize;
+				border: 3px solid black;
+				right: calc($margin5) * 2;
+			}
+		}
+	}
+}
+.status {
+	z-index: 2;
+	width: 100%;
+	height: 25px;
+	top: $margin1;
+}
+.time {
+	top: calc(50% - 9px);
+	filter: invert(100%);
+	font-weight: bold;
+	left: $margin5;
+}
+.sim {
+	top: $statusitemtop;
+	width: 10px;
+	height: 60%;
+	filter: $invert;
+	background-color: $background-color_3;
+	right: 18%;
+	div {
+		bottom: 0;
+		width: 33%;
+		background-color: $background-color_2;
+		&:nth-child(1) {
+			height: 33%;
+		}
+		&:nth-child(2) {
+			margin-left: 6px;
+			height: 66%;
+		}
+		&:nth-child(3) {
+			margin-left: 12px;
+			height: 100%;
+		}
+	}
+}
+.cell {
+	top: $statusitemtop;
+	width: 20px;
+	height: 60%;
+	filter: $invert;
+	background-color: $background-color_3;
+	right: $margin5;
+	border: 2px solid black;
+	border-radius: 4px;
+	div {
+		top: calc(50% - 3px);
+		width: 2px;
+		height: 5px;
+		background-color: $background-color_2;
+		right: -4px;
+	}
+	&::after {
+		display: block;
+		content: "";
+		width: 70%;
+		height: 100%;
+		background-color: $background-color_2;
+	}
+}
+.video {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	video {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
